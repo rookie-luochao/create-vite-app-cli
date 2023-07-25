@@ -34,8 +34,6 @@
   "exclude": ["node_modules"],
   "references": [{ "path": "./tsconfig.node.json" }],
   "ts-node": {
-    "compilerOptions": {
-      "module": "CommonJS"
-    }
+    "esm": true
   }
 }

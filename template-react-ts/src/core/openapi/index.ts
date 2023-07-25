@@ -1,5 +1,5 @@
 import { generateService } from "@umijs/openapi";
-import appConfig, { urlPath } from "../../config";
+import appConfig, { urlPath } from "../../config.ts";
 
 generateService({
   // 实际schemaPath从环境变量读取
