@@ -27,3 +27,4 @@ public
 package-lock.json
 yarn.lock
 .tmp
+.husky/_
