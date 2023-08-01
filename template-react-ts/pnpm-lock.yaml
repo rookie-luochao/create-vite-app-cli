@@ -5,6 +5,7 @@ specifiers:
   '@commitlint/config-conventional': ^17.0.3
   '@emotion/babel-plugin': ^11.11.0
   '@emotion/react': ^11.11.1
+  '@tanstack/react-query': ^4.32.0
   '@types/lodash-es': ^4.17.8
   '@types/react': ^18.2.15
   '@types/react-dom': ^18.2.7
@@ -33,6 +34,7 @@ specifiers:
 
 dependencies:
   '@emotion/react': 11.11.1_tznpbkknyqq5lcv5sgrl332jvu
+  '@tanstack/react-query': 4.32.0_biqbaboplfbrettd7655fr4n2y
   ahooks: 3.7.8_react@18.2.0
   antd: 5.7.2_biqbaboplfbrettd7655fr4n2y
   axios: 1.4.0
@@ -2254,6 +2256,28 @@ packages:
       - supports-color
     dev: true
 
+  /@tanstack/query-core/4.32.0:
+    resolution: {integrity: sha512-ei4IYwL2kmlKSlCw9WgvV7PpXi0MiswVwfQRxawhJA690zWO3dU49igaQ/UMTl+Jy9jj9dK5IKAYvbX7kUvviQ==}
+    dev: false
+
+  /@tanstack/react-query/4.32.0_biqbaboplfbrettd7655fr4n2y:
+    resolution: {integrity: sha512-B8WUMcByYAH9500ENejDCATOmEZhqjtS9wsfiQ3BNa+s+yAynY8SESI8WWHhSqUmjd0pmCSFRP6BOUGSda3QXA==}
+    peerDependencies:
+      react: ^16.8.0 || ^17.0.0 || ^18.0.0
+      react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
+      react-native: '*'
+    peerDependenciesMeta:
+      react-dom:
+        optional: true
+      react-native:
+        optional: true
+    dependencies:
+      '@tanstack/query-core': 4.32.0
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
+      use-sync-external-store: 1.2.0_react@18.2.0
+    dev: false
+    
   /@tsconfig/node10/1.0.9:
     resolution: {integrity: sha512-jNsYVVxU8v5g43Erja32laIDHXeoNvFEpX33OK4d6hljo3jDhCBDhx5dhCCTMWUojscpAagGiRkBKxpdl9fxqA==}
     dev: true

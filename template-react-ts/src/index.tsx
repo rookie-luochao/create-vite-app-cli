@@ -4,6 +4,7 @@ import { ConfigProvider } from "antd";
 import { CreateBrowserRouter } from "./core/router/CreateBrowserRouter";
 import { getAppRoutes } from "./routes";
 import { LazyImportComponent } from "./core/router/LazyImportComponent";
+import { TanStackQueryProvider } from "./core/http/TanStackQuery";
 
 import zhCN from "antd/locale/zh_CN";
 import "./index.css";
@@ -12,7 +13,9 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
     <ConfigProvider locale={zhCN}>
       <LazyImportComponent>
-        <CreateBrowserRouter routes={getAppRoutes()} />
+        <TanStackQueryProvider>
+          <CreateBrowserRouter routes={getAppRoutes()} />
+        </TanStackQueryProvider>
       </LazyImportComponent>
     </ConfigProvider>
   </React.StrictMode>,

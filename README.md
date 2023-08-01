@@ -22,5 +22,5 @@ pnpx create-vite-app-cli@latest my-react-app --template react-ts
 
 Currently supported template presets include:
 
-- `vue-ts` [点此去](https://github.com/rookie-luochao/create-vite-app-cli/tree/master/template-vue-ts)
 - `react-ts` [点此去](https://github.com/rookie-luochao/create-vite-app-cli/tree/master/template-react-ts)
+- `vue-ts` [点此去](https://github.com/rookie-luochao/create-vite-app-cli/tree/master/template-vue-ts)

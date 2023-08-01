@@ -1,16 +1,32 @@
 import { useState } from "react";
-import { DatePicker, DatePickerProps } from "antd";
+import { DatePicker, DatePickerProps /* , Spin */ } from "antd";
 import { Outlet } from "react-router-dom";
-// import { useRequest } from "ahooks";
-// import { HelloGet } from "../api/hello";
+// import { HelloGet, HelloPost } from "../api/hello";
+// import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+
 import "./index.css";
 
 export default function MainLayout() {
+  // const queryClient = useQueryClient();
   const [count, setCount] = useState(0);
+  // const [name, setName] = useState("zhangshan");
 
-  // const { run, refresh, data, loading } = useRequest(HelloGet, {
-  //   manual: true,
+  // const { data } = useQuery({
+  //   queryKey: ["hello", name],
+  //   queryFn: () => {
+  //     return HelloGet({ name: name });
+  //   },
   // });
+
+  // const { isLoading, mutate } = useMutation({
+  //   mutationFn: HelloPost,
+  //   onSuccess(data) {
+  //     setName(data?.data || "");
+  //   },
+  //   onError() {
+  //     queryClient.invalidateQueries({ queryKey: ['hello'] });
+  //   }
+  // })
 
   const onChange: DatePickerProps["onChange"] = (date, dateString) => {
     console.log(date, dateString);
@@ -18,15 +34,18 @@ export default function MainLayout() {
 
   return (
     <div className="App">
-      <div>
+      {/* <Spin spinning={isLoading}>
+        {data?.data}
+      </Spin> */}
+      {/* <div>
         <a
           onClick={() => {
-            // run({ name: "zhangsan" });
+            mutate({ name: "lisi" });
           }}
         >
           调用接口
         </a>
-      </div>
+      </div> */}
       <DatePicker onChange={onChange} />
       <div className="card">
         <button onClick={() => setCount((count) => count + 1)}>count is {count}</button>
