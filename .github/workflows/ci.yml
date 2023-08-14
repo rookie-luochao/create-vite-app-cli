@@ -26,7 +26,7 @@ jobs:
             **/node_modules
           key: ${{runner.OS}}-${{hashFiles('**/pnpm-lock.yaml')}}
       - name: Install pnpm
-        run: npm install -g pnpm@8
+        run: npm install -g pnpm@7.5.0
       # 依赖下载
       - name: Installing Dependencies
         if: steps.cache-dependencies.outputs.cache-hit != 'true'
