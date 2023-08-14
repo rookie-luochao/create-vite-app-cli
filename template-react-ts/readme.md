@@ -44,12 +44,24 @@ pnpm openapi
 * 网络请求 - [axios](https://github.com/axios/axios)
 * 数据请求利器 - [react-query](https://github.com/TanStack/query)
 * 通用hook(可不用) - [ahooks](https://github.com/alibaba/hooks)
+* 错误边界 - [react-error-boundary](https://github.com/bvaughn/react-error-boundary)
+* 前端日志(暂未集成) - [sentry-javascript](https://github.com/getsentry/sentry-javascript)
 * hack - [babel](https://github.com/babel/babel)
 * 代码检查 - [eslint](https://github.com/eslint/eslint)
 * ts代码检查插件 - [typescript-eslint](https://github.com/typescript-eslint/typescript-eslint)
 * 代码美化 - [prettier](https://github.com/prettier/prettier)
 * git钩子 - [husky](https://github.com/typicode/husky)
 * commit格式化 -[commitlint](https://github.com/conventional-changelog/commitlint)
+
+#### 技术说明
+
+```
+通用hook(ahooks): 一个hook工具库，该库可以依据个人喜好选择是否使用
+
+路由(react-router-dom): 自身默认支持错误边界功能，我觉得react-error-boundary更好用点，所以用hack绕过了react-router-dom的错误边界(ps: 暂时不支持参数禁用错误边界)
+
+前端日志(sentry): 暂时未集成，需要进一步调研实用性和可用性
+```
 
 
 #### 基于openapi自动获取api请求函数

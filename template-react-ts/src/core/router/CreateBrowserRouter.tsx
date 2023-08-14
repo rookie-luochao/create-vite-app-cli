@@ -1,3 +1,4 @@
+import { Spin } from "antd";
 import { RouteObject, RouterProvider, createBrowserRouter } from "react-router-dom";
 
 export function CreateBrowserRouter({ routes }: { routes: RouteObject[] }) {
@@ -8,5 +9,5 @@ export function CreateBrowserRouter({ routes }: { routes: RouteObject[] }) {
     },
   });
 
-  return <RouterProvider router={router} />;
+  return <RouterProvider router={router} fallbackElement={<Spin spinning />} />;
 }
