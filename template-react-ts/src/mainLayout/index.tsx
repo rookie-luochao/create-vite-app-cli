@@ -1,57 +1,60 @@
-import { useState } from "react";
-import { DatePicker, DatePickerProps /* , Spin */ } from "antd";
+import { useEffect, useState } from "react";
+import { Layout } from "antd";
 import { Outlet } from "react-router-dom";
-// import { HelloGet, HelloPost } from "../api/hello";
-// import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { fromEvent, throttleTime } from "rxjs";
+import Sider from "antd/es/layout/Sider";
+import { dsc } from "../core/style/defaultStyleConfig";
+import { Logo, MenuComp, ToolBar } from "./MainLayoutComp";
 
-import "./index.css";
+export function MainLayout() {
+  const [collapsed, setCollapsed] = useState(false);
+  const [menuHeight, setMenuHeight] = useState(document.documentElement.clientHeight);
+  const defaultMenuTitleHeight = 64;
 
-export default function MainLayout() {
-  // const queryClient = useQueryClient();
-  const [count, setCount] = useState(0);
-  // const [name, setName] = useState("zhangshan");
+  useEffect(() => {
+    const subscription = fromEvent(window, "resize")
+      .pipe(throttleTime(1000))
+      .subscribe(() => {
+        const timeoutId = globalThis.setTimeout(() => {
+          setMenuHeight(document.documentElement.clientHeight);
+        }, 100);
+        return () => {
+          globalThis.clearTimeout(timeoutId);
+        };
+      });
 
-  // const { data } = useQuery({
-  //   queryKey: ["hello", name],
-  //   queryFn: () => {
-  //     return HelloGet({ name: name });
-  //   },
-  // });
-
-  // const { isLoading, mutate } = useMutation({
-  //   mutationFn: HelloPost,
-  //   onSuccess(data) {
-  //     setName(data?.data || "");
-  //   },
-  //   onError() {
-  //     queryClient.invalidateQueries({ queryKey: ['hello'] });
-  //   }
-  // })
-
-  const onChange: DatePickerProps["onChange"] = (date, dateString) => {
-    console.log(date, dateString);
-  };
+    return () => {
+      subscription.unsubscribe();
+    };
+  }, []);
 
   return (
-    <div className="App">
-      {/* <Spin spinning={isLoading}>
-        {data?.data}
-      </Spin> */}
-      {/* <div>
-        <a
-          onClick={() => {
-            mutate({ name: "lisi" });
+    <Layout>
+      <Sider
+        theme={"light"}
+        width={240}
+        css={{ height: menuHeight, overflow: "scroll" }}
+        collapsible
+        collapsed={collapsed}
+        onCollapse={setCollapsed}
+      >
+        <Logo inlineCollapsed={collapsed} />
+        <MenuComp />
+      </Sider>
+      <Layout className="site-layout" css={{ backgroundColor: dsc.color.bg }}>
+        <ToolBar />
+        <div
+          css={{
+            padding: 24,
+            backgroundColor: dsc.color.bgGray,
+            overflow: "scroll",
+            height: menuHeight - defaultMenuTitleHeight,
+            borderRadius: "10px 0 0",
           }}
         >
-          调用接口
-        </a>
-      </div> */}
-      <DatePicker onChange={onChange} />
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>count is {count}</button>
-      </div>
-      <Outlet />
-      <p className="read-the-docs">Click on the Vite and React logos to learn more</p>
-    </div>
+          <Outlet />
+        </div>
+      </Layout>
+    </Layout>
   );
 }

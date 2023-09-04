@@ -1,60 +1,74 @@
-import { useEffect } from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useLoginStore } from "../core/store";
-import { ParsedUrlQuery, useQuery } from "../core/router/UseQuery";
+import { Button, Checkbox, Form, Input, message } from "antd";
+import { LockOutlined, UserOutlined } from "@ant-design/icons";
+import { flexCenterOpts } from "../core/style/utils";
+import { defaultLinkPath, defaultLoginInfo, defaultUserInfo } from "./config";
 
-interface IQuery extends ParsedUrlQuery {
-  a: string | string[];
-  b: string;
+interface ILogin {
+  username: string;
+  password: string;
+  remember?: boolean;
 }
 
 export default function Login() {
-  const { loginInfo, updateLoginInfo, clear } = useLoginStore((state) => state);
-  const [query, setQuery] = useQuery<IQuery>();
+  const { updateLoginInfo } = useLoginStore((state) => state);
+  const [form] = Form.useForm();
+  const navigate = useNavigate();
 
-  useEffect(() => {
-    console.log("query: ", query);
-  }, [query]);
+  const onFinish = (values: ILogin) => {
+    if (values.username === defaultUserInfo.username && values.password === defaultUserInfo.password) {
+      updateLoginInfo(defaultLoginInfo);
+      navigate(defaultLinkPath);
+    } else {
+      message.warning("用户名或密码错误，请检查！");
+    }
+  };
 
   return (
-    <div>
-      <h3 css={{ fontSize: 24 }}>this is login page</h3>
-      <div>
-        <Link to="/main/module1">goto module1</Link>
-      </div>
-      token: {loginInfo?.accessToken}
-      <div>
-        <a
-          onClick={() => {
-            setQuery((preState) => ({
-              ...preState,
-              a: `${Number(preState.a || 0) + 1}`,
-              b: `${Number(preState.b || 0) + 1}`,
-            }));
-          }}
-        >
-          测试query
-        </a>
-      </div>
-      <div>
-        {loginInfo ? (
-          <a onClick={clear}>注销登录</a>
-        ) : (
-          <a
-            css={{
-              marginTop: 20,
-              color: "red",
-              fontWeigth: 700,
-              fontSize: 24,
-            }}
-            onClick={() => {
-              updateLoginInfo({ accessToken: "123" });
-            }}
-          >
-            登录
+    <div
+      css={[
+        {
+          height: globalThis.document.documentElement.clientHeight,
+          backgroundImage: "url(https://gw.alipayobjects.com/zos/rmsportal/TVYTbAXWheQpRcWDaDMu.svg)",
+          backgroundSize: "100% 100%",
+          backgroundRepeat: "no-repeat",
+        },
+        flexCenterOpts(),
+      ]}
+    >
+      <Form
+        name="login"
+        form={form}
+        style={{ width: 356 }}
+        initialValues={{ username: "", password: "", remember: true }}
+        onFinish={onFinish}
+      >
+        <Form.Item name="username" rules={[{ required: true, message: "Please input your Username!" }]}>
+          <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder={defaultUserInfo.username} />
+        </Form.Item>
+        <Form.Item name="password" rules={[{ required: true, message: "Please input your Password!" }]}>
+          <Input
+            prefix={<LockOutlined className="site-form-item-icon" />}
+            type="password"
+            placeholder={defaultUserInfo.password}
+          />
+        </Form.Item>
+        <Form.Item>
+          <Form.Item name="remember" valuePropName="checked" noStyle>
+            <Checkbox>Remember me</Checkbox>
+          </Form.Item>
+          <a css={{ float: "right" }} href="">
+            Forgot password
           </a>
-        )}
-      </div>
+        </Form.Item>
+        <Form.Item>
+          <Button type="primary" htmlType="submit" className="login-form-button" style={{ width: "100%" }}>
+            Log in
+          </Button>
+          Or <a href="">register now!</a>
+        </Form.Item>
+      </Form>
     </div>
   );
 }

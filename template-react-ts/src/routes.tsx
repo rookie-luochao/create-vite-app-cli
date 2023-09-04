@@ -3,14 +3,14 @@ import { loginRoutes } from "./login/routes";
 import { mainRoutes } from "./mainLayout/routes";
 import { ErrorBoundaryWrapOutlet } from "./core/error-boundary";
 
-export function getAppRoutes() {
+function getAppRoutes() {
   return [
     {
       path: "/",
       element: <ErrorBoundaryWrapOutlet />,
       children: [
         {
-          path: "",
+          index: true,
           element: <Navigate to="/login" />,
         },
         loginRoutes,
@@ -19,3 +19,5 @@ export function getAppRoutes() {
     },
   ] as RouteObject[];
 }
+
+export const appRoutes = getAppRoutes();

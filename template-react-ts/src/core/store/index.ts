@@ -8,6 +8,7 @@ interface ILoginInfo {
   uid?: string;
   expireAt?: string;
   expires_in?: number;
+  name?: string;
 }
 
 interface ILoginInfoState {

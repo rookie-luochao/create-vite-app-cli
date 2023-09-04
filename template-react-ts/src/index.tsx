@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { ConfigProvider } from "antd";
 import { CreateBrowserRouter } from "./core/router/CreateBrowserRouter";
-import { getAppRoutes } from "./routes";
+import { appRoutes } from "./routes";
 import { LazyImportComponent } from "./core/router/LazyImportComponent";
 import { TanStackQueryProvider } from "./core/http/TanStackQuery";
 
@@ -14,7 +14,7 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
     <ConfigProvider locale={zhCN}>
       <LazyImportComponent>
         <TanStackQueryProvider>
-          <CreateBrowserRouter routes={getAppRoutes()} />
+          <CreateBrowserRouter routes={appRoutes} />
         </TanStackQueryProvider>
       </LazyImportComponent>
     </ConfigProvider>

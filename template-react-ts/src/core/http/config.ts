@@ -16,6 +16,8 @@ export function getConfig(): IConfig {
   };
   console.log("metaEnv", import.meta.env);
 
+  // 本地开发环境直接从根目录config文件读取, ci环境直接从mate标签读取, 通过容器环境变量写入html的mate标签
+  // mate标签name为：app_config, content格式为：appName=webapp,baseUrl=https://api.com
   if (import.meta.env.DEV) {
     return appConfig;
   } else {

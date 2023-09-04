@@ -61,6 +61,8 @@ pnpm openapi
 路由(react-router-dom): 自身默认支持错误边界功能，我觉得react-error-boundary更好用点，所以用hack绕过了react-router-dom的错误边界(ps: 暂时不支持参数禁用错误边界)
 
 前端日志(sentry): 暂时未集成，需要进一步调研实用性和可用性
+
+自动生成api(openapi): 后端接入apenapi后，前端可以根据openapi文件自动生成request api
 ```
 
 
