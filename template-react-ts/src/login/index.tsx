@@ -41,7 +41,7 @@ export default function Login() {
         name="login"
         form={form}
         style={{ width: 356 }}
-        initialValues={{ username: "", password: "", remember: true }}
+        initialValues={{ username: defaultUserInfo.username, password: defaultUserInfo.password, remember: true }}
         onFinish={onFinish}
       >
         <Form.Item name="username" rules={[{ required: true, message: "Please input your Username!" }]}>
