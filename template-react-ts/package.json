@@ -1,14 +1,14 @@
 {
-  "name": "create-vite-react-app",
+  "name": "webapp-react",
   "private": true,
-  "version": "0.0.0",
+  "version": "0.0.1",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "lint:fix": "eslint . --ext ts,tsx --fix",
+    "lintfix": "eslint . --ext ts,tsx --fix",
     "prepare": "husky install",
     "openapi": "ts-node './src/core/openapi/index.ts'"
   },
@@ -29,6 +29,7 @@
     "zustand": "^4.3.9"
   },
   "devDependencies": {
+    "@babel/preset-react": "^7.22.15",
     "@commitlint/cli": "^17.0.3",
     "@commitlint/config-conventional": "^17.0.3",
     "@emotion/babel-plugin": "^11.11.0",
