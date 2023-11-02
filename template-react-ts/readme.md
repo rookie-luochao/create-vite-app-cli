@@ -64,7 +64,7 @@ generateService({
 ```bash
 // src/config.ts
 
-// 一级path, 例如：demo-server
+// 一级path, 例如：openapi
 export const urlPath = "";
 
 // 项目基本变量配置
@@ -81,9 +81,9 @@ const appConfig: IConfig = {
 ```
 
 #### 环境变量
-* 项目 dev 环境变量配置在`/src/config.ts`
+* 项目 dev 环境变量配置在`src/config.ts`
 * 项目 prod 环境变量配置在`.env.production`，详情参考：[vite环境变量](https://cn.vitejs.dev/guide/env-and-mode.html)
-* 项目 prod 环境变量也可以容器变量 ARG，目前html文件提供了两个mate标签(env、app_config)接收变量，格式详情参考：`src/core/http/config.ts`
+* 项目 prod 环境变量也可以使用容器变量 ARG，我们会读取容器变量并注入到前端meta标签的content里面，目前html文件提供了两个mate标签(env、app_config)接收变量，格式详情参考：`index.html` 和 `src/core/http/config.ts`
 
 #### 核心技术
 * 打包编译 - [vite](https://github.com/vitejs/vite)
