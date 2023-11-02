@@ -5,10 +5,14 @@
 > **Compatibility Note:**
 > Vite requires [Node.js](https://nodejs.org/en/) version 14.18+, 16+. However, some templates require a higher Node.js version to work, please upgrade if your package manager warns about it.
 
-With PNPM:
+With RUN:
 
 ```bash
-$ pnpx create-vite-app-cli@latest
+# npm
+$ npm create vite-app-cli@latest
+
+# pnpm
+$ pnpm create vite-app-cli@latest
 ```
 
 Then follow the prompts!
@@ -16,8 +20,11 @@ Then follow the prompts!
 You can also directly specify the project name and the template you want to use via additional command line options. For example, to scaffold a Vite + React project, run:
 
 ```bash
+# npm
+npm create vite-app-cli@latest my-react-app --template react-ts
+
 # pnpm
-pnpx create-vite-app-cli@latest my-react-app --template react-ts
+pnpm create vite-app-cli@latest my-react-app --template react-ts
 ```
 
 Currently supported template presets include:
