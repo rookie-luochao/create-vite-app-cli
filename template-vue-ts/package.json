@@ -1,20 +1,83 @@
 {
-  "name": "vite-vue-typescript-starter",
+  "name": "webapp-vue",
   "private": true,
-  "version": "0.0.0",
+  "version": "0.0.1",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "prepare": "husky install",
+    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "lintfix": "eslint . --ext ts,tsx --fix",
+    "openapi": "ts-node './src/core/openapi/index.ts'"
   },
   "dependencies": {
-    "vue": "^3.3.4"
+    "@tanstack/vue-query": "^5.7.3",
+    "axios": "^1.6.0",
+    "element-plus": "^2.4.1",
+    "lodash-es": "^4.17.21",
+    "pinia": "^2.1.7",
+    "pinia-plugin-persistedstate": "^3.2.0",
+    "vue": "^3.3.4",
+    "vue-router": "^4.2.5"
   },
   "devDependencies": {
+    "@commitlint/cli": "^18.2.0",
+    "@commitlint/config-conventional": "^18.1.0",
+    "@types/lodash-es": "^4.17.10",
+    "@types/node": "^20.8.10",
+    "@typescript-eslint/eslint-plugin": "^6.9.1",
+    "@typescript-eslint/parser": "^6.9.1",
+    "@umijs/openapi": "^1.9.1",
     "@vitejs/plugin-vue": "^4.2.3",
+    "eslint": "^8.52.0",
+    "eslint-plugin-vue": "^9.18.1",
+    "husky": "^8.0.3",
+    "lint-staged": "^15.0.2",
+    "prettier": "^3.0.3",
+    "ts-node": "^10.9.1",
     "typescript": "^5.0.2",
+    "unplugin-auto-import": "^0.16.7",
+    "unplugin-vue-components": "^0.25.2",
     "vite": "^4.4.5",
     "vue-tsc": "^1.8.5"
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ],
+    "rules": {
+      "type-enum": [
+        2,
+        "always",
+        [
+          "build",
+          "chore",
+          "ci",
+          "docs",
+          "feat",
+          "fix",
+          "perf",
+          "refactor",
+          "revert",
+          "style",
+          "test"
+        ]
+      ]
+    }
+  },
+  "lint-staged": {
+    "*.(ts|vue|cjs)": [
+      "eslint --quiet"
+    ],
+    "*.(ts|vue|json|html|cjs)": [
+      "prettier --write"
+    ]
+  },
+  "prettier": {
+    "trailingComma": "all",
+    "arrowParens": "always",
+    "printWidth": 120
   }
 }

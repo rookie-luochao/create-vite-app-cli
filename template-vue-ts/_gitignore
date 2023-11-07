@@ -22,3 +22,9 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+package-lock.json
+yarn.lock
+*.js
+.tmp
+.husky/_
