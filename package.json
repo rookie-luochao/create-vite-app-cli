@@ -23,14 +23,14 @@
     "node": "^14.18.0 || >=16.0.0"
   },
   "keywords": [
-    "vite",
-    "vite-app",
-    "webapp",
-    "web-app",
     "react-app",
-    "react-app-cli",
     "vue-app",
-    "vue-app-cli"
+    "react-ts",
+    "vue-ts",
+    "docker",
+    "openapi",
+    "swagger",
+    "query"
   ],
   "repository": {
     "type": "git",
