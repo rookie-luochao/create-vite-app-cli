@@ -31,6 +31,9 @@ pnpm create vite-app-cli@latest my-react-app --template react-ts
 ```
 
 template presets detail:
-
 - `react-ts` [点此去](https://github.com/rookie-luochao/create-vite-app-cli/tree/master/template-react-ts)
 - `vue-ts` [点此去](https://github.com/rookie-luochao/create-vite-app-cli/tree/master/template-vue-ts)
+
+## Contribute Code
+- `react-ts` [跳转](https://github.com/rookie-luochao/create-vite-react-app)
+- `vue-ts` [跳转](https://github.com/rookie-luochao/create-vite-vue-app)
