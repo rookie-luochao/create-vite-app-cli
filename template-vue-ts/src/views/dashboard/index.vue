@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { useMutation, useQueryClient } from "@tanstack/vue-query";
 import { HelloPost } from "../../api/hello";
-import { useUserStore } from "../../core/store/user";
+import { useUserInfoStore } from "../../core/store/user";
 
 const queryClient = useQueryClient();
-const userStore = useUserStore();
+const userStore = useUserInfoStore();
 
 const { mutate, isPending } = useMutation({
   mutationFn: HelloPost,

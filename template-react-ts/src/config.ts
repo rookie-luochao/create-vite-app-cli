@@ -1,4 +1,9 @@
-import { IConfig } from "./core/http/config";
+export interface IConfig {
+  appName: string;
+  baseURL: string;
+  version?: string;
+  env?: string;
+}
 
 // 一级path, 例如：openapi
 export const urlPath = "";

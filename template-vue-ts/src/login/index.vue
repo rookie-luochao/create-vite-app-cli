@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { computed, onMounted, ref } from "vue";
-import { defaultUserInfo, useUserStore } from "../core/store/user";
+import { defaultUserInfo, useUserInfoStore } from "../core/store/user";
 import { ElMessage } from "element-plus";
 import router from "../core/router";
 
-const userStore = useUserStore();
+const userStore = useUserInfoStore();
 const defaultAccountInfo = {
   username: "zhangshan",
   password: "123456",

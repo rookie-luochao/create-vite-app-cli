@@ -1,6 +1,5 @@
 // @ts-ignore
 /* eslint-disable */
-/// <reference types="./typings.d.ts" />
 import request from "@request";
 
 /** HelloGet GET /demo-docker/api/v1/hello */

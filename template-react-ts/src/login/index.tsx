@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { useLoginStore } from "../core/store";
+import { useLoginInfoStore } from "../core/store";
 import { Button, Checkbox, Form, Input, message } from "antd";
 import { LockOutlined, UserOutlined } from "@ant-design/icons";
 import { flexCenterOpts } from "../core/style/utils";
@@ -12,7 +12,7 @@ interface ILogin {
 }
 
 export default function Login() {
-  const { updateLoginInfo } = useLoginStore((state) => state);
+  const { updateLoginInfo } = useLoginInfoStore((state) => state);
   const [form] = Form.useForm();
   const navigate = useNavigate();
 

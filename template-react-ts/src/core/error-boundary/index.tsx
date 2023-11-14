@@ -1,6 +1,6 @@
 import { Modal } from "antd";
 import { isString } from "lodash-es";
-import { ReactNode } from "react";
+import { ErrorInfo, ReactNode } from "react";
 import { ErrorBoundary, FallbackProps } from "react-error-boundary";
 import { Outlet } from "react-router-dom";
 
@@ -15,7 +15,7 @@ export function fallbackRender({ error, resetErrorBoundary }: FallbackProps) {
   );
 }
 
-export const logError = (error: Error, info: { componentStack: string }) => {
+export const logError = (error: Error, info: ErrorInfo) => {
   // Do something with the error, e.g. log to an external API
   Modal.error({
     title: error.message,

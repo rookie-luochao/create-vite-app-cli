@@ -1,11 +1,4 @@
-import appConfig from "../../config";
-
-export interface IConfig {
-  appName: string;
-  baseURL: string;
-  version?: string;
-  env?: string;
-}
+import appConfig, { IConfig } from "../../config";
 
 export function getConfig(): IConfig {
   const mateEnv = import.meta.env;
@@ -15,7 +8,6 @@ export function getConfig(): IConfig {
     version: mateEnv?.VITE_version || "",
     env: mateEnv?.VITE_env || "",
   };
-  console.log("metaEnv", import.meta.env);
 
   // 本地开发环境直接从根目录config文件读取, ci环境直接从mate标签读取, 通过容器环境变量写入html的mate标签
   // mate标签name为：app_config, content格式为：appName=webapp,baseURL=https://api.com,env=,version=

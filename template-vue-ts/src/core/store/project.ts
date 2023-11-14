@@ -6,7 +6,7 @@ interface IProjectInfo {
   projectName: string;
 }
 
-export const useProjectStore = defineStore(
+export const useProjectInfoStore = defineStore(
   "projectInfo",
   () => {
     const projectInfo = ref<IProjectInfo | null>(null);

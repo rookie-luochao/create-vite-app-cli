@@ -1,5 +1,5 @@
 import { reduce } from "lodash-es";
-import { ParsedUrlQueryValue } from "./UseQuery";
+import { ParsedUrlQueryValue } from "./UseRouterQuery";
 
 export interface Dictionary<T> {
   [key: string]: T;
@@ -38,11 +38,14 @@ type ParseParam<Param extends ParsedUrlQueryValue> = Param extends `${infer Key}
   ? {
       [K in Key]: Value;
     }
-  : Record<string, any>;
+  : Dictionary<ParsedUrlQueryValue>;
 
 type MergeValues<One, Other> = One extends Other ? One : Other extends unknown[] ? [One, ...Other] : [One, Other];
 
-type MergeParams<OneParam extends Record<string, any>, OtherParam extends Record<string, any>> = {
+type MergeParams<
+  OneParam extends Dictionary<ParsedUrlQueryValue>,
+  OtherParam extends Dictionary<ParsedUrlQueryValue>,
+> = {
   readonly [Key in keyof OneParam | keyof OtherParam]: Key extends keyof OneParam
     ? Key extends keyof OtherParam
       ? MergeValues<OneParam[Key], OtherParam[Key]>
@@ -66,7 +69,7 @@ export function parseQueryString(queryString: string) {
     queryString = queryString.slice(1);
   }
 
-  const queryObj: Record<string, any> = {};
+  const queryObj: Dictionary<ParsedUrlQueryValue> = {};
   const items = queryString.split("&");
 
   items.forEach((item) => {
@@ -76,7 +79,7 @@ export function parseQueryString(queryString: string) {
       if (Array.isArray(queryObj[key])) {
         (queryObj[key] as Array<string>).push(value);
       } else {
-        queryObj[key] = [queryObj[key], value];
+        queryObj[key] = [queryObj[key] as string, value];
       }
     } else {
       queryObj[key] = value;

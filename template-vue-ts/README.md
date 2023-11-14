@@ -15,14 +15,14 @@
 * 打包编译 - [vite](https://github.com/vitejs/vite)
 * 包管理 - [pnpm](https://github.com/pnpm/pnpm)
 * 编程语言 - [typescript](https://github.com/microsoft/TypeScript)
-* 前端框架 - [vue](https://github.com/vuejs/core)
-* 路由 - [vue-router](https://github.com/vuejs/router)
+* 前端框架 - [vue3](https://github.com/vuejs/core)
+* 路由 - [vue-router4](https://github.com/vuejs/router)
 * UI组件库 - [element-plus](https://github.com/element-plus/element-plus)
 * 全局数据共享 - [pinia](https://github.com/vuejs/pinia)
 * 自动生成api - [openapi](https://github.com/chenshuai2144/openapi2typescript)
 * 网络请求 - [axios](https://github.com/axios/axios)
 * 数据请求利器 - [vue-query](https://github.com/TanStack/query/tree/main/packages/vue-query)
-* 通用hook(可不用) - [vueuse](https://github.com/vueuse/vueuse)
+* 通用hook - [vueuse](https://github.com/vueuse/vueuse)
 * hack - [babel](https://github.com/babel/babel)
 * 代码检查 - [eslint](https://github.com/eslint/eslint)
 * ts代码检查插件 - [typescript-eslint](https://github.com/typescript-eslint/typescript-eslint)
@@ -69,7 +69,7 @@ make docker-build-run
 * 如果遇到git commit无法触发husky的情况，则需要手动执行一遍`npm run prepare`
 
 #### 基于openapi自动获取api请求函数，配置如下
-```bash
+```js
 // src/core/openapi/index.ts
 
 // 示例代码
@@ -86,7 +86,7 @@ generateService({
 ```
 
 #### 应用配置
-```bash
+```js
 // src/config.ts
 
 // 一级path, 例如：openapi
@@ -111,7 +111,7 @@ const appConfig: IConfig = {
 * 项目 prod 环境变量也可以使用容器变量 ARG，我们会读取容器变量并注入到前端meta标签的content里面，目前html文件提供了两个mate标签(env、app_config)接收变量，格式详情参考：`index.html` 和 `src/core/http/config.ts`
 
 #### 调用接口(react-query), 支持自动loading和接口请求联动
-```bash
+```js
 // HelloGet是一个基于axios的promise请求
 export async function HelloGet(
   // 叠加生成的Param类型 (非body参数swagger默认没有生成对象)
@@ -148,12 +148,12 @@ export async function HelloPost(body: Api.HelloPostParam, options?: { [key: stri
 
 // 提交编辑数据
 const queryClient = useQueryClient();
-const userStore = useUserStore();
+const userInfoStore = useUserInfoStore();
 const { mutate, isPending } = useMutation({
   mutationFn: HelloPost,
   onSuccess: (res) => {
     // 第一种刷新方式：修改store
-    userStore.updateUserInfo({ name: res.data });
+    userInfoStore.updateUserInfo({ name: res.data });
     // 第二种刷新方式：通过清除vue-query缓存key
     queryClient.invalidateQueries({ queryKey: ["helloGet"] });
   },

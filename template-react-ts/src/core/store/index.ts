@@ -17,22 +17,11 @@ interface ILoginInfoState {
   clear: () => void;
 }
 
-interface IProject {
-  projectId: string;
-  projectName: string;
-}
-
-interface IProjectState {
-  projectInfo: IProject[] | null;
-  updateProjectInfo: (nextState: IProject[]) => void;
-  clear: () => void;
-}
-
-export const loginInfoStorageKey = "login-storage";
+export const loginInfoStorageKey = "login-info-storage";
 export const defaultLoginInfoStorage = { state: { loginInfo: null }, version: 0 };
 export type ILoginInfoStorageState = StorageValue<Pick<ILoginInfoState, "loginInfo">>;
 
-export const useLoginStore = create<ILoginInfoState>()(
+export const useLoginInfoStore = create<ILoginInfoState>()(
   logger(
     devtools(
       persist(
@@ -49,9 +38,20 @@ export const useLoginStore = create<ILoginInfoState>()(
   ),
 );
 
-const projectInfoStorageKey = "project-storage";
+interface IProjectInfo {
+  projectId: string;
+  projectName: string;
+}
 
-export const useProjectStore = create<IProjectState>()(
+interface IProjectInfoState {
+  projectInfo: IProjectInfo[] | null;
+  updateProjectInfo: (nextState: IProjectInfo[]) => void;
+  clear: () => void;
+}
+
+const projectInfoStorageKey = "project-info-storage";
+
+export const useProjectInfoStore = create<IProjectInfoState>()(
   logger(
     devtools(
       persist(

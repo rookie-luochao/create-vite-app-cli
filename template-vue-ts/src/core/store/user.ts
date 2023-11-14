@@ -10,9 +10,9 @@ export interface IUserInfo {
   expires_in?: number;
 }
 
-export const userInfoStorageKey = "userInfo";
+export const userInfoStorageKey = "userInfo-storage";
 
-export const useUserStore = defineStore(
+export const useUserInfoStore = defineStore(
   userInfoStorageKey,
   () => {
     const userInfo = ref<IUserInfo | null>(null);

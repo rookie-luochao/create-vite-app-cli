@@ -1,6 +1,6 @@
 import { Avatar, Dropdown, Menu } from "antd";
 import { dsc } from "../core/style/defaultStyleConfig";
-import { useLoginStore } from "../core/store";
+import { useLoginInfoStore } from "../core/store";
 import LogoMiniIcon from "../assets/images/logo_mini.svg";
 import LogoIcon from "../assets/images/logo.svg";
 import { uiListModuleName } from "../pages/ui-list/routes";
@@ -89,7 +89,7 @@ export const Logo = ({ inlineCollapsed }: { inlineCollapsed?: boolean }) => {
 };
 
 const UserName = () => {
-  const { loginInfo } = useLoginStore((state) => state);
+  const { loginInfo } = useLoginInfoStore((state) => state);
 
   return (
     <div css={{ display: "flex", alignItems: "center" }}>
@@ -139,7 +139,7 @@ export const IconDown = () => (
 
 export function ToolBar() {
   const navigate = useNavigate();
-  const { clear } = useLoginStore((state) => state);
+  const { clear } = useLoginInfoStore((state) => state);
 
   return (
     <div
