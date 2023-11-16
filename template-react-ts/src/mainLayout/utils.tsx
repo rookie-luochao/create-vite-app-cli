@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import { Dictionary } from "../core/router/utils";
+import { Dictionary } from "react-router-toolkit";
 import { map, startsWith } from "lodash-es";
 import { MenuProps } from "antd";
 import { Link, RouteObject } from "react-router-dom";
@@ -42,6 +42,7 @@ export const getMenus = ({
     return getItem({
       key: routePath,
       label: <Link to={routePath}>{item.id}</Link>,
+      icon: item.path && modulePathToIconMap?.[item.path],
     });
   });
 };

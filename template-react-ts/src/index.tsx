@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { ConfigProvider } from "antd";
 import { CreateBrowserRouter } from "./core/router/CreateBrowserRouter";
-import { appRoutes } from "./routes";
+import { appRoutes } from "./rootRoutes";
 import { LazyImportComponent } from "./core/router/LazyImportComponent";
 import { TanStackQueryProvider } from "./core/http/TanStackQuery";
 

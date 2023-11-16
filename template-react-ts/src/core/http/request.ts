@@ -1,6 +1,7 @@
 import axios, { AxiosRequestConfig } from "axios";
 import { ILoginInfoStorageState, defaultLoginInfoStorage, loginInfoStorageKey } from "../store";
 import { getConfig } from "./config";
+import { notification } from "antd";
 
 const BASE_URL = getConfig().baseURL;
 
@@ -9,18 +10,29 @@ const instance = axios.create({
   headers: {
     "Content-Type": "application/json",
   },
-  timeout: 60000, // 超时时间60秒
+  timeout: 120000, // 超时时间120秒
 });
 
-instance.interceptors.response.use((response) => {
-  // 统一错误处理
-  // data解构
-  if (response.data) {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-return
-    return response.data;
-  }
-  return response;
-});
+instance.interceptors.response.use(
+  (response) => {
+    // data解构
+    if (response.data) {
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-return
+      return response.data;
+    }
+    return response;
+  },
+  (error) => {
+    // 统一错误处理
+    if (error.response.status >= 300) {
+      notification.error({
+        message: error.response.data?.msg,
+        duration: 2,
+      });
+    }
+    return Promise.reject(error);
+  },
+);
 
 instance.interceptors.request.use((config) => {
   const loginInfoStorageStr = globalThis.localStorage.getItem(loginInfoStorageKey);

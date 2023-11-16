@@ -4,16 +4,16 @@ import { useLoginInfoStore } from "../core/store";
 import LogoMiniIcon from "../assets/images/logo_mini.svg";
 import LogoIcon from "../assets/images/logo.svg";
 import { uiListModuleName } from "../pages/ui-list/routes";
-import { BuildOutlined, ToolOutlined } from "@ant-design/icons";
-import { Dictionary, parseQueryString } from "../core/router/utils";
+import { BuildOutlined, DashboardOutlined, ToolOutlined } from "@ant-design/icons";
+import { Dictionary, parseQueryString } from "react-router-toolkit";
 import { ReactNode, useEffect, useMemo, useState } from "react";
 import { find } from "lodash-es";
-import { appRoutes } from "../routes";
+import { appRoutes } from "../rootRoutes";
 import { mainLayoutPath } from "./routes";
 import { getMenus } from "./utils";
 import { flexCenterOpts } from "../core/style/utils";
 import { useNavigate } from "react-router-dom";
-import { dashboardModuleName } from "../pages/module/routes";
+import { dashboardModuleName } from "../pages/dashboard/routes";
 import { utilListModuleName } from "../pages/util-list/routes";
 
 export const globalHiddenInMenuParentPath = "globalHiddenInMenuParentPath";
@@ -38,13 +38,14 @@ export function MenuComp() {
         queryObj = parseQueryString(query);
       }
       if (queryObj && queryObj[globalHiddenInMenuParentPath]) {
-        menuActivePath = queryObj[globalHiddenInMenuParentPath];
+        menuActivePath = queryObj[globalHiddenInMenuParentPath] as string;
       }
       setMenuActivePath([menuActivePath]);
     }
   }, [pathname]);
 
   const modulePathToIconMap = {
+    [dashboardModuleName]: <DashboardOutlined />,
     [uiListModuleName]: <BuildOutlined />,
     [utilListModuleName]: <ToolOutlined />,
   } as Dictionary<ReactNode>;
@@ -54,7 +55,7 @@ export function MenuComp() {
     return getMenus({
       routes: mainRoutes?.children || [],
       modulePathToIconMap,
-      to: mainLayoutPath,
+      to: `/${mainLayoutPath}`,
     });
   }, []);
 
